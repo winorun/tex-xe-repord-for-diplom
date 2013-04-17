@@ -1,0 +1,60 @@
+\begin{tikzpicture}[
+                     node distance=2cm,
+                     text height=1.5ex,
+                     auto,
+					 text width=2.7cm,
+					 align=flush center
+                     %text depth=.25ex
+]
+\node[format,rectangle,minimum size=6mm,rounded corners=3mm]  (start) {Start};
+\node[format,below of=start]  (p1) {$N,U,Disp$\\$ k=0$};
+\node[format,diamond,text width=1.5cm,node distance=2.5cm,aspect=2,below of=p1] (if1) {$K<N$};
+\path[->] (start)  edge (p1);
+\path[->] (p1)  edge (if1);
+
+
+\node[format,node distance=4.5cm,text width=4cm,right of=if1]  (p2) {$Disp-=U^2$\\$ Disp=\sqrt{\frac{|Disp|}{N}}$};
+\path[->] (if1)  edge node[near start] {no} (p2);
+\node[format,below of=p2,text width=2cm]  (p3) {Print all};
+\path[->] (p2)  edge (p3);
+\node[format,rectangle,minimum size=6mm,rounded corners=3mm,below of=p3]  (stop) {End};
+\path[->] (p3)  edge (stop);
+
+\node[format,below of=if1]  (p4) {$ k++$};
+\path[->] (p4)  edge (if1);
+
+\node[format,left of=if1,node distance=5cm]  (p5) {init $x,y$\\$S,S_1=0 $};
+\path[->] (if1)  edge node[near start] {yes} (p5);
+
+\node[format,diamond,text width=2.5cm,node distance=4cm,aspect=2,below of=p5] (if2){ boundary(x,y) };
+\path[->] (p5)  edge (if2);
+
+\node[format,right of=if2,node distance=5cm,text width=5cm]  (p6) {$S += \frac{S_1}{4}\phi_1(x,y)+\phi_0(x,y)$\\$U+=\frac{S}{N}$\\$Disp+=\frac{S^2}{N}$};
+\path[->] (p6)  edge (p4);
+\path[->] (if2) edge node[near start] {no} (p6);
+
+\node[format,below of=if2]  (p7) {$ d=diam(x,y)$};
+
+\node[format,below of=p7]  (p81) {$\alpha=DRAND$\\ $\omega_1=\cos 2\pi \alpha$\\$\omega_2=\sin 2\pi \alpha$};
+\node[format,below of=p81]  (p82) {$\alpha=DRAND$\\ $\omega_3=\cos 2\pi \alpha$\\$\omega_4=\sin 2\pi \alpha$};
+\path[->] (if2) edge node[near start] {yes} (p7);
+\path[->] (p7) edge (p81);
+\path[->] (p81) edge (p82);
+
+
+\node[format,right of=p82,node distance=5cm]  (p9) {$\alpha_1=DRAND$\\ $\alpha_2=DRAND$};
+
+\node[format,diamond,text width=3cm,aspect=2,below of=p9] (if3){ $\alpha_2>(4\alpha\log\alpha_1)$ };
+
+\path[->] (p82) edge (p9);
+\path[->] (p9) edge (if3);
+\path[->,draw] (if3) -- node[near start] {yes} ++(3,0) |- (p9);
+
+\node[format,below of=if3]  (p10) {$\nu=\alpha_1d$};
+\node[format,below of=p10,text width=8cm]  (p11) {$S+=S_1-d^2\frac{d^2-\nu^2-\nu^2\log{\frac{d}{\nu}}}{\log{\frac{d}{\nu}}}*\frac{g(x+\nu\omega_1,y+\nu\omega_2)}{16}$};
+\node[format,below of=p11]  (p12) {$S_1-=d^2$\\$x+=\omega_1d$\\$y+=\omega_2d$};
+\path[->] (if3) edge node[near start] {no} (p10);
+\path[->] (p10) edge (p11);
+\path[->] (p11) edge (p12);
+\path[->,draw] (p12) -- ++(-8,0)  |- (if2);
+\end{tikzpicture}
