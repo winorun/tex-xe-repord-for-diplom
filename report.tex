@@ -57,10 +57,17 @@
  %--------------------------------------------------------%
  \setlength{\parindent}{1.25cm}% величина абзаца
 
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}}
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\theenumii}{\arabic{enumii}}
+\renewcommand\labelenumi{\theenumi}
+\renewcommand\labelenumii{\theenumii}  
+
 \begin{document}
 
 \input{titleDiplom}
 \setcounter{page}{2}
+\renewcommand{\contentsname}{Оглавление}
 \tableofcontents
 \input{introduction}
 \input{body}
