@@ -1,24 +1,43 @@
-\documentclass[unicode, 12pt, a4paper, oneside, fleqn]{report}          
+\documentclass[unicode, 14pt, a4paper, oneside, fleqn]{extreport}
 %edu.ci.nsu.ru ghtlbgkjvyfz ghfrnbrf
 %rolcon@mail.ru
+
+\usepackage{graphicx} % для вставки картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm} %формулы 
+\usepackage{indentfirst} % отделять первую строку раздела абзацным отступом тоже
+\usepackage{multirow} % улучшенное форматирование таблиц
+\usepackage{setspace} %разрыв строк
+\usepackage{tikz} %для отрисовывания картинок
+\usepackage{import} %что бы tex увидел папки (аля ... chapter_1\chapter_1.tex)
+\usepackage{titlesec} %заголовки
+\usepackage{tocvsec2} %настройка для оглавления
+\usepackage[tableposition=top]{caption} %подписи к таблицам, рисункам
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{pdfpages} %вставка pdf документов
+\usepackage{geometry} %для полей
+\usepackage{tocloft} %оформление оглавления
+\usepackage[square,numbers,sort&compress]{natbib}
+
 \usepackage{polyglossia}  %% подключает пакет многоязыковой вёрстки
+\usepackage{geometry} % Меняем поля страницы
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{indentfirst} % красная строка в первом абзаце
+\usepackage{cmap} % для кодировки шрифтов в pdf
+\usepackage{enumitem}
+
 \setmainfont[Mapping=tex-text]{Times New Roman}%%% Ставим Times New Roman - как основной шрифт
 \setmonofont[Scale=MatchLowercase]{Courier New}%%% Courier New - для моноширного текста
 \defaultfontfeatures{Mapping=tex-text}%%% Для того чтобы работали стандартные сочетания символов ---, --, << >> и т.п.
 \setdefaultlanguage{russian}%%% Для работы с русскими текстами (расстановки переносов)
 \newfontfamily\russianfont{Times New Roman}
 
-\usepackage{geometry} % Меняем поля страницы
 \geometry{left=2.5cm}% левое поле
 \geometry{right=1.5cm}% правое поле
 \geometry{top=1.0cm}% верхнее поле
 \geometry{bottom=2cm}% нижнее поле
 
-\usepackage{amssymb,amsfonts,amsmath}%,mathtext,cite,enumerate,float}
-
-\usepackage{listings}
-
-\usepackage{fancyhdr}
 \pagestyle{fancy}
 
 \fancyhf{}
@@ -43,8 +62,6 @@
 
 \newcommand{\err}[1]{\marginpar{<=! #1}}
 
-
-\usepackage{tikz}
 \usetikzlibrary{positioning, arrows, shapes, snakes}
 
 \tikzstyle{format} = [
@@ -53,13 +70,10 @@
                        top color=white,
                        bottom color=white,]
 
-\usepackage{indentfirst} % красная строка в первом абзаце
+
  %--------------------------------------------------------%
  \setlength{\parindent}{1.25cm}% величина абзаца
 
-\usepackage{cmap} % для кодировки шрифтов в pdf
-
-\usepackage{enumitem}
 \makeatletter
      \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
 \makeatother
@@ -68,12 +82,89 @@
 \renewcommand{\labelenumi}{\asbuk{enumi})}
 \renewcommand{\labelenumii}{\arabic{enumii})}
 
-%~ \renewcommand{\labelitemi}{\normalfont\bfseries{--}}
-%~ \renewcommand{\theenumi}{\arabic{enumi}}
-%~ \renewcommand{\theenumii}{\arabic{enumii}}
-%~ \renewcommand\labelenumi{\theenumi}
-%~ \renewcommand\labelenumii{\theenumii}  
 
+\frenchspacing
+ 
+ %изменение в Заглоовках
+\titleformat{\chapter}
+	{}
+	{\MakeUppercase{\chaptertitlename} \thechapter}
+	{14pt}
+	{\bf}{}
+ 
+\titleformat{\section}
+	{\normalsize\bf\upshape}
+	{\thesection}
+	{14pt}{}
+ 
+\titleformat{\subsection}
+	{\normalsize\bf}
+	{\thesubsection}
+	{14pt}{}
+	
+\titleformat{\subsubsection}
+	{\normalsize}
+	{\thesubsubsection}
+	{14pt}{}
+ 
+
+%подписи к рисункам и таблицам
+\DeclareCaptionLabelFormat{my-11figure}{Рисунок #2}
+\DeclareCaptionLabelFormat{my-11table}{Таблица #2}
+\DeclareCaptionLabelSeparator{my-11}{.~}
+\captionsetup{labelsep=my-11}
+\captionsetup[figure]{labelformat=my-11figure}
+\captionsetup[table]{labelformat=my-11table}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+ 
+%оглавление
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries\MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand*{\cftsubsecfont}{\MakeUppercase{\normalsize}}
+\renewcommand{\cftsubsubsecfont}{\it}
+\renewcommand{\cftbeforechapskip}{0.3cm}
+\renewcommand{\cftbeforesecskip}{0.3cm}
+\setlength{\cftchapindent}{0cm}
+\setlength{\cftsecindent}{0.5cm}
+\setlength{\cftsubsecindent}{1.4cm}
+\setlength{\cftsubsubsecindent}{2.7cm}
+ 
+%новая команда для отображение введения и прочего добра 
+\newcommand{\empline}{\mbox{}\newline}
+\newcommand{\likechapterheading}[1]{ 
+\begin{center}
+	\textbf{\MakeUppercase{#1}}
+\end{center}
+\empline}
+
+\makeatletter
+	\renewcommand{\@dotsep}{2}
+	\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}}
+\makeatother
+\newcommand{\likechapter}[1]{    
+	\likechapterheading{#1}    
+	\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}}
+
+%список литературы
+\renewcommand{\bibnumfmt}[1]{#1.\hfill} % нумерация источников в самом списке — через точку
+\renewcommand{\bibsection}{\likechapter{Список используемых источников}} % заголовок специального раздела
+\setlength{\bibsep}{0pt}
+ 
+%глубины 
+\setcounter{tocdepth}{4} %оглавление
+\setcounter{secnumdepth}{4} %заголовки
+ 
+% для импорта (chapter_XXX), где XXX-номер папки и главы
+\newcommand{\includechapter}[1]{\subimport{chapter-#1/}{chapter-#1}}
+
+% Настройка вертикальных и горизонтальных отступов
+\titlespacing*{\chapter}{0.6cm}{0cm}{0.24cm}
+\titlespacing*{\section}{0.95cm}{0cm}{0.18cm}
+\titlespacing*{\subsection}{1.4cm}{0cm}{0.18cm}
+\titlespacing*{\subsubsection}{1.8cm}{0cm}{0.18cm}
+ 
 \begin{document}
 
 \input{titleDiplom}

@@ -7,8 +7,8 @@
                      %text depth=.25ex
 ]
 \node[format,rectangle,minimum size=6mm,rounded corners=3mm]  (start) {Start};
-\node[format,below of=start]  (p1) {$N,U,Disp$\\$ k=0$};
-\node[format,diamond,text width=1.5cm,node distance=2.5cm,aspect=2,below of=p1] (if1) {$K<N$};
+\node[format,below of=start,node distance=1.2 cm]  (p1) {$N,U,Disp$\\$ k=0$};
+\node[format,diamond,text width=1.5cm,node distance=1.5cm,aspect=2,below of=p1] (if1) {$K<N$};
 \path[->] (start)  edge (p1);
 \path[->] (p1)  edge (if1);
 
@@ -20,17 +20,14 @@
 \node[format,rectangle,minimum size=6mm,rounded corners=3mm,below of=p3]  (stop) {End};
 \path[->] (p3)  edge (stop);
 
-\node[format,below of=if1]  (p4) {$ k++$};
-\path[->] (p4)  edge (if1);
-
 \node[format,left of=if1,node distance=5cm]  (p5) {init $x,y$\\$S,S_1=0 $};
 \path[->] (if1)  edge node[near start] {yes} (p5);
 
-\node[format,diamond,text width=2.5cm,node distance=4cm,aspect=2,below of=p5] (if2){ boundary(x,y) };
+\node[format,diamond,text width=2.5cm,node distance=2cm,aspect=2,below of=p5] (if2){ boundary(x,y) };
 \path[->] (p5)  edge (if2);
 
 \node[format,right of=if2,node distance=5cm,text width=5cm]  (p6) {$S += \frac{S_1}{4}\phi_1(x,y)+\phi_0(x,y)$\\$U+=\frac{S}{N}$\\$Disp+=\frac{S^2}{N}$};
-\path[->] (p6)  edge (p4);
+\path[->] (p6)  edge (if1);
 \path[->] (if2) edge node[near start] {no} (p6);
 
 \node[format,below of=if2]  (p7) {$ d=diam(x,y)$};
