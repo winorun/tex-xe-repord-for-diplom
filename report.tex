@@ -11,7 +11,8 @@
 \usepackage{import} %что бы tex увидел папки (аля ... chapter_1\chapter_1.tex)
 \usepackage{titlesec} %заголовки
 \usepackage{tocvsec2} %настройка для оглавления
-\usepackage[tableposition=top]{caption} %подписи к таблицам, рисункам
+\usepackage[singlelinecheck=false]{caption} %подписи к таблицам, рисункам
+
 \usepackage{subcaption}
 \usepackage{color}
 \usepackage{pdfpages} %вставка pdf документов
@@ -33,26 +34,26 @@
 \setdefaultlanguage{russian}%%% Для работы с русскими текстами (расстановки переносов)
 \newfontfamily\russianfont{Times New Roman}
 
-\geometry{left=2.5cm}% левое поле
-\geometry{right=1.5cm}% правое поле
-\geometry{top=1.0cm}% верхнее поле
+\geometry{left=3cm}% левое поле
+\geometry{right=1.cm}% правое поле
+\geometry{top=2.0cm}% верхнее поле
 \geometry{bottom=2cm}% нижнее поле
 
-\pagestyle{fancy}
-
-\fancyhf{}
-\fancyhead[R]{\thepage}
-\fancyheadoffset{0mm}
-\fancyfootoffset{0mm}
-\setlength{\headheight}{15mm}
-%\setlength{\topmargin }{0.5mm}
-\setlength{\headsep }{0 mm}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancypagestyle{plain}{ 
-     \fancyhf{}
-     \rhead{\thepage}
-}
+%~ %\pagestyle{fancy}
+%~ 
+%~ \fancyhf{}
+%~ \fancyhead[R]{\thepage}
+%~ \fancyheadoffset{0mm}
+%~ \fancyfootoffset{0mm}
+%~ \setlength{\headheight}{15mm}
+%~ %\setlength{\topmargin }{0.5mm}
+%~ \setlength{\headsep }{0 mm}
+%~ \renewcommand{\headrulewidth}{0pt}
+%~ \renewcommand{\footrulewidth}{0pt}
+%~ \fancypagestyle{plain}{ 
+     %~ \fancyhf{}
+     %~ \rhead{\thepage}
+%~ }
 
 \sloppy{}
 
@@ -86,35 +87,40 @@
 \frenchspacing
  
  %изменение в Заглоовках
-\titleformat{\chapter}
-	{}
-	{\MakeUppercase{\chaptertitlename} \thechapter}
-	{14pt}
-	{\bf}{}
+ 
+ \titleformat{\chapter}
+{\thispagestyle{myheadings}\centering\hyphenpenalty=10000\normalfont\Large\bfseries}{
+\thechapter\  }{0pt}{\Large}
+ 
+%~ \titleformat{\chapter}[display]
+     %~ {\filcenter}
+     %~ {\MakeUppercase{\chaptertitlename} \thechapter}
+     %~ {8pt}
+     %~ {\bfseries}{}
  
 \titleformat{\section}
 	{\normalsize\bf\upshape}
 	{\thesection}
 	{14pt}{}
  
+\titleformat{\section}
+     {\normalsize\bfseries}
+     {\thesection}
+     {1em}{}
+  
 \titleformat{\subsection}
-	{\normalsize\bf}
-	{\thesubsection}
-	{14pt}{}
-	
-\titleformat{\subsubsection}
-	{\normalsize}
-	{\thesubsubsection}
-	{14pt}{}
+     {\normalsize\bfseries}
+     {\thesubsection}
+     {1em}{}
  
 
 %подписи к рисункам и таблицам
-\DeclareCaptionLabelFormat{my-11figure}{Рисунок #2}
-\DeclareCaptionLabelFormat{my-11table}{Таблица #2}
-\DeclareCaptionLabelSeparator{my-11}{.~}
-\captionsetup{labelsep=my-11}
-\captionsetup[figure]{labelformat=my-11figure}
-\captionsetup[table]{labelformat=my-11table}
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure,justification=centering}
+\captionsetup[table]{labelformat=gosttable,justification=raggedright}
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
  
 %оглавление
@@ -164,7 +170,9 @@
 \titlespacing*{\section}{0.95cm}{0cm}{0.18cm}
 \titlespacing*{\subsection}{1.4cm}{0cm}{0.18cm}
 \titlespacing*{\subsubsection}{1.8cm}{0cm}{0.18cm}
- 
+  
+\renewcommand{\baselinestretch}{1.25}  
+  
 \begin{document}
 
 \input{titleDiplom}

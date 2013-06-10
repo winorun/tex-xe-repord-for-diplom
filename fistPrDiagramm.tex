@@ -47,11 +47,9 @@
 \path[->] (p9) edge (if3);
 \path[->,draw] (if3) -- node[near start] {yes} ++(3,0) |- (p9);
 
-\node[format,below of=if3]  (p10) {$\nu=\alpha_1d$};
-\node[format,below of=p10,text width=8cm]  (p11) {$S+=S_1-d^2\frac{d^2-\nu^2-\nu^2\log{\frac{d}{\nu}}}{\log{\frac{d}{\nu}}}*\frac{g(x+\nu\omega_1,y+\nu\omega_2)}{16}$};
+\node[format,below of=if3,text width=8cm,node distance=2.4 cm]  (p11) {$\nu=\alpha_1d$\\$ S+=S_1-d^2\frac{d^2-\nu^2-\nu^2\log{\frac{d}{\nu}}}{\log{\frac{d}{\nu}}}*\frac{g(x+\nu\omega_1,y+\nu\omega_2)}{16}$};
 \node[format,below of=p11]  (p12) {$S_1-=d^2$\\$x+=\omega_1d$\\$y+=\omega_2d$};
-\path[->] (if3) edge node[near start] {no} (p10);
-\path[->] (p10) edge (p11);
+\path[->] (if3) edge node[near start] {no} (p11);
 \path[->] (p11) edge (p12);
 \path[->,draw] (p12) -- ++(-8,0)  |- (if2);
 \end{tikzpicture}
