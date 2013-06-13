@@ -23,7 +23,7 @@
 \usepackage{polyglossia}  %% подключает пакет многоязыковой вёрстки
 \usepackage{geometry} % Меняем поля страницы
 \usepackage{listings}
-\usepackage{fancyhdr}
+%~ \usepackage{fancyhdr} %стиль страницы
 \usepackage{indentfirst} % красная строка в первом абзаце
 \usepackage{cmap} % для кодировки шрифтов в pdf
 \usepackage{enumitem}
@@ -39,7 +39,9 @@
 \geometry{top=2.0cm}% верхнее поле
 \geometry{bottom=2cm}% нижнее поле
 
-%~ %\pagestyle{fancy}
+
+%\pagestyle{fancy}
+\pagestyle{plain}
 %~ 
 %~ \fancyhf{}
 %~ \fancyhead[R]{\thepage}
@@ -73,7 +75,7 @@
 
 
  %--------------------------------------------------------%
- \setlength{\parindent}{1.25cm}% величина абзаца
+ \setlength{\parindent}{1.35cm}% величина абзаца
 
 \makeatletter
      \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
@@ -89,7 +91,9 @@
  %изменение в Заглоовках
  
  \titleformat{\chapter}
-{\thispagestyle{myheadings}\centering\hyphenpenalty=10000\normalfont\Large\bfseries}{
+{
+%~ \thispagestyle{myheadings}
+\centering\hyphenpenalty=10000\normalfont\Large\bfseries}{
 \thechapter\  }{0pt}{\Large}
  
 %~ \titleformat{\chapter}[display]
@@ -163,7 +167,7 @@
 \setcounter{secnumdepth}{4} %заголовки
  
 % для импорта (chapter_XXX), где XXX-номер папки и главы
-\newcommand{\includechapter}[1]{\subimport{chapter-#1/}{chapter-#1}}
+%\newcommand{\includechapter}[1]{\subimport{chapter-#1/}{chapter-#1}}
 
 % Настройка вертикальных и горизонтальных отступов
 \titlespacing*{\chapter}{0.6cm}{0cm}{0.24cm}

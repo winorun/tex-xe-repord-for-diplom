@@ -1,5 +1,5 @@
 \addcontentsline{toc}{chapter}{Приложение}
-\chapter{Исходные коды и диаграммы программ}
+\chapter{Диаграммы программ}
 \section{Основной аналог - Biharmon2 измененная}
 %\lstinputlisting[language=C++, firstline=0]{source.cpp}
 \begin{figure}[hp]
@@ -8,38 +8,5 @@
 \end{small}
 \caption{Принцип действия программы}
 \end{figure}
-\chapter{Справка}
-\section{Исполняемая программа}
-biharmon -l |[ -d ]| -h\\
-biharmon -l |[ -d ]| -h [filename]\\
-- l	Latex-file - происходит создание файла report.tex\\
-- d	Display - вывод данных на дисплей\\
-- h	html-file - происходит создание файла report.html\\
-Если файл существует к имени добавляется индекс. \\
+%\chapter{Справка}
 
-filename - файл данных;
-
-Приоритет -l, -h, -d \\
-\section{Библиотека}
-Открытые методы класса\\
-init(int argc,char *args[])\\
-setFunPhi();\\
-
-\section{Файл данных}
-Построчный.\\
-X Y [SectionName]
-\chapter{Выходные данные}
-\section{tex,html}
-\begin{center}
-Отчет \\
-N=$10^{4} $ \\
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf{$x,y$} & {\textbf{$h$}}& {\textbf{$u(r)$}}& {\textbf{$u^{~}(r)$}}& {\textbf{$|u(r)|$}}\\ \hline
-\textbf{$0.5,0.5$} & {\textbf{$0.1$}}& {\textbf{$0.22$}}& {\textbf{$0.22$}}& {\textbf{$0.0004$}}\\ \hline
-\end{tabular}
-\end{center}
-\chapter{Тезаурус}
-API - Интерфейс программирования приложений (иногда интерфейс прикладного программирования) (англ. application programming interface) — набор готовых классов, процедур, функций, структур и констант, предоставляемых приложением (библиотекой, сервисом) для использования во внешних программных продуктах. 
-
-MPI - Message Passing Interface (интерфейс передачи сообщений) — API для передачи информации, который позволяет обмениваться сообщениями между процессами, выполняющими одну задачу.
