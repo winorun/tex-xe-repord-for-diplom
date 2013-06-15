@@ -166,7 +166,6 @@
 \setcounter{tocdepth}{4} %оглавление
 \setcounter{secnumdepth}{4} %заголовки
  
-% для импорта (chapter_XXX), где XXX-номер папки и главы
 %\newcommand{\includechapter}[1]{\subimport{chapter-#1/}{chapter-#1}}
 
 % Настройка вертикальных и горизонтальных отступов
@@ -181,7 +180,7 @@
 
 \input{titleDiplom}
 \setcounter{page}{2}
-\renewcommand{\contentsname}{Оглавление}
+\renewcommand{\contentsname}{Содержание}
 \tableofcontents
 \input{introduction}
 \input{body}
@@ -189,5 +188,10 @@
 %\marginpar{просто сноска}
 
 \appendix{}
+ \titleformat{\chapter}{
+%~ \thispagestyle{myheadings}
+\centering\hyphenpenalty=10000\normalfont\Large\bfseries}{
+\MakeUppercase{\chaptertitlename} \thechapter\  }{0pt}{\Large}
+
 \include{appendix}
 \end{document} 
