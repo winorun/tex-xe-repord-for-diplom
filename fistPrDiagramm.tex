@@ -6,14 +6,17 @@
 					 align=flush center
                      %text depth=.25ex
 ]
-\node[format,rectangle,minimum size=6mm,rounded corners=3mm]  (start) {Start};
+\node[format,text width=14 cm,align=flush right,text height=16cm, dashed] at (-2.5,-10) {1};
+\node[format,text width=13 cm,align=flush right,text height=10cm, dashed] at (-2,-11) {2};
+
+\node[format,rectangle,minimum size=0 mm,rounded corners=3mm]  (start) at (-2,0) {Start};
 \node[format,below of=start,node distance=1.2 cm]  (p1) {$N,U,Disp$\\$ k=0$};
 \node[format,diamond,text width=1.5cm,node distance=1.5cm,aspect=2,below of=p1] (if1) {$K<N$};
 \path[->] (start)  edge (p1);
 \path[->] (p1)  edge (if1);
 
 
-\node[format,node distance=4.5cm,text width=4cm,right of=if1]  (p2) {$Disp-=U^2$\\$ Disp=\sqrt{\frac{|Disp|}{N}}$};
+\node[format,node distance=7 cm,text width=4cm,right of=if1]  (p2) {$Disp-=U^2$\\$ Disp=\sqrt{\frac{|Disp|}{N}}$};
 \path[->] (if1)  edge node[near start] {no} (p2);
 \node[format,below of=p2,text width=2cm]  (p3) {Print all};
 \path[->] (p2)  edge (p3);
@@ -52,4 +55,6 @@
 \path[->] (if3) edge node[near start] {no} (p11);
 \path[->] (p11) edge (p12);
 \path[->,draw] (p12) -- ++(-8,0)  |- (if2);
+
+
 \end{tikzpicture}
