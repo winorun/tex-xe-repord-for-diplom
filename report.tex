@@ -92,7 +92,6 @@
  
  \titleformat{\chapter}
 {
-%~ \thispagestyle{myheadings}
 \centering\hyphenpenalty=10000\normalfont\Large\bfseries}{
 \thechapter\  }{0pt}{\Large}
  
@@ -130,16 +129,17 @@
 %оглавление
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \normalsize \MakeUppercase}
 \renewcommand{\cftbeforetoctitleskip}{ 0 em}
-\renewcommand{\cftchapfont}{\normalsize }
+\renewcommand{\cftchapfont}{\normalfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
 \renewcommand{\cftsecfont}{\normalsize}
 \renewcommand*{\cftsubsecfont}{\normalsize}
 \renewcommand{\cftsubsubsecfont}{\it}
 \renewcommand{\cftbeforechapskip}{0.0 cm}
 \renewcommand{\cftbeforesecskip}{0.0 cm}
-\setlength{\cftchapindent}{0cm}
+\setlength{\cftchapindent}{0 cm}
 \setlength{\cftsecindent}{0 cm}
-\setlength{\cftsubsecindent}{0cm}
-\setlength{\cftsubsubsecindent}{0cm}
+\setlength{\cftsubsecindent}{0 cm}
+\setlength{\cftsubsubsecindent}{0 cm}
  
 %новая команда для отображение введения и прочего добра 
 \newcommand{\empline}{\mbox{}\newline}
@@ -174,8 +174,10 @@
 \titlespacing*{\subsection}{1.4cm}{0cm}{0.18cm}
 \titlespacing*{\subsubsection}{1.8cm}{0cm}{0.18cm}
   
-\renewcommand{\baselinestretch}{1.27}  
-  
+%\renewcommand{\baselinestretch}{1.27}  
+\usepackage{setspace}
+\onehalfspacing{}
+
 \begin{document}
 
 \input{titleDiplom}
@@ -198,7 +200,7 @@
  \titleformat{\chapter}[display]
  {
 \filcenter\hyphenpenalty=10000\normalfont\Large\bfseries}{
-\MakeUppercase{\chaptertitlename} \thechapter\  }{8pt}{\Large}
+\MakeUppercase{\chaptertitlename} \thechapter\  }{0pt}{\Large}
 
 \include{appendix}
 \end{document} 
