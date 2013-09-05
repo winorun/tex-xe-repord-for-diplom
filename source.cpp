@@ -11,8 +11,6 @@ using namespace std;
  double x;
  double y;
 
- 
-
  double u(double x, double y)
  {
 	 return double(exp(x)*exp(y));
